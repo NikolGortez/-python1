@@ -1,0 +1,19 @@
+#1
+def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+def max_prime_divisor(n):
+    max_prime = 1
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0 and is_prime(i):
+            max_prime = i
+    return max_prime
+
+number = int(input("Введите число: "))
+result = max_prime_divisor(number)
+print("Максимальный простой делитель числа", number, ":", result)
