@@ -1,0 +1,140 @@
+def task1():
+    def frequency_difference(s):
+    char_count = {}
+    for char in s:
+        if char.isalpha():
+            char = char.lower()
+            if char in char_count:
+                char_count[char] += 1
+            else:
+                char_count[char] = 1
+
+    most_common_char = max(char_count, key=char_count.get)
+    most_common_freq = char_count[most_common_char]
+
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    alphabet_position = alphabet.index(most_common_char) + 1
+
+    difference = abs(most_common_freq - alphabet_position)
+
+    return difference
+
+
+s = "hello, world!"
+result = frequency_difference(s)
+print(f"Разница между частотой наиболее часто встречаемого символа и его позицией в алфавите: {result}")
+    print("Вы выбрали задачу 1.")
+def task2():
+from collections import Counter
+import string
+
+def frequency_deviation(s):
+    s = s.lower()
+    char_count = Counter(s)
+    most_common_char = char_count.most_common(1)[0][0]
+    most_common_freq = char_count[most_common_char]
+
+    alphabet_frequency = Counter(string.ascii_lowercase)
+
+    deviation_dict = {}
+    for char in string.ascii_lowercase:
+        text = char * alphabet_frequency[char]
+        text_count = Counter(text)
+
+        deviation = sum((text_count[char] - char_count.get(char, 0))**2 for char in text_count)
+        deviation_dict[char] = deviation
+
+    sorted_deviation = sorted(deviation_dict.items(), key=lambda x: x[1])
+
+    return sorted_deviation
+
+s = "hello, world!"
+result = frequency_deviation(s)
+print(f"Символы в порядке увеличения квадратичного отклонения: {result}")
+    print("Вы выбрали задачу 2.")
+def task3():
+    def deviation_between_largest_ascii_and_mirror_pairs(s):
+    if len(s) % 2 != 0:
+        mid = len(s) // 2
+    else:
+        mid = len(s) // 2 - 1
+
+    max_ascii_char = max(s)
+    max_ascii_code = ord(max_ascii_char)
+
+    deviations = {}
+    for i in range(mid):
+        ascii_diff = abs(ord(s[i]) - ord(s[len(s) - 1 - i]))
+        square_deviation = (ascii_diff - max_ascii_code) ** 2
+        deviations[(s[i], s[len(s) - 1 - i])] = square_deviation
+
+    sorted_deviations = sorted(deviations.items(), key=lambda x: x[1])
+
+    return sorted_deviations
+
+
+s = "hello, world!"
+result = deviation_between_largest_ascii_and_mirror_pairs(s)
+print(f"Пары символов в порядке увеличения квадратичного отклонения: {result}")
+    print("Вы выбрали задачу 3.")
+def task4():
+def average_ascii_weight(triplet):
+    return sum(ord(char) for char in triplet) / len(triplet)
+
+def variance(values):
+    avg = sum(values) / len(values)
+    return sum((x - avg) ** 2 for x in values) / len(values)
+
+def compute_deviation(s1, s2):
+    max_avg_weight1 = float('-inf')
+    max_weight_triplet1 = ''
+    for i in range(len(s1)-2):
+        avg_weight = average_ascii_weight(s1[i:i+3])
+        if avg_weight > max_avg_weight1:
+            max_avg_weight1 = avg_weight
+            max_weight_triplet1 = s1[i:i+3]
+
+    max_avg_weight2 = float('-inf')
+    max_weight_triplet2 = ''
+    max_variance = 0
+    for i in range(len(s2)-2):
+        avg_weight = average_ascii_weight(s2[i:i+3])
+        if avg_weight > max_avg_weight2:
+            max_avg_weight2 = avg_weight
+            max_weight_triplet2 = s2[i:i+3]
+
+    deviation = variance([ord(char) for char in max_weight_triplet2]) - variance([ord(char) for char in max_weight_triplet1])
+
+    return deviation
+
+s1 = "hello, world!"
+s2 = "this is a test"
+result = compute_deviation(s1, s2)
+print(f"Квадратичное отклонение: {result}")
+   print("Вы выбрали задачу 4.")
+
+def main():
+    while True:
+        print("Выберите задачу:")
+        print("1. Решить задачу 1")
+        print("2. Решить задачу 2")
+        print("3. Решить задачу 3")
+        print("4. Решить задачу 4")
+        print("0. Выйти")
+        choice = input("Введите номер задачи или 0 для выхода: ")
+        if choice == '1':
+            task1()
+        elif choice == '2':
+            task2()
+        elif choice == '3':
+            task3()
+         elif choice == '4':
+            task4()
+        elif choice == '0':
+            print("До свидания!")
+            break
+        else:
+            print("Некорректный ввод. Пожалуйста, выберите существующую задачу.")
+
+if __name__ == "__main__":
+    main()
