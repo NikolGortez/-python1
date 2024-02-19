@@ -1,0 +1,72 @@
+# def task1():
+#     def count_russian_characters(text):
+    count = 0
+    for char in text:
+        if 'а' <= char <= 'я' or char == 'ё' or 'А' <= char <= 'Я' or char == 'Ё':
+            count += 1
+    return count
+
+input_text = "Пример строки с русскими символами: здравствуйте!"
+russian_characters_count = count_russian_characters(input_text)
+print("Общее количество русских символов:", russian_characters_count)
+#     print("Вы выбрали задачу 1.")
+# def task2():
+#    def find_lower_case_latin_characters(text):
+    latin_characters = set()
+    for char in text:
+        if 'a' <= char <= 'z':
+            latin_characters.add(char)
+    return latin_characters
+
+input_text = "Пример строки с использованием символов латиницы: hello!"
+lower_case_latin_characters = find_lower_case_latin_characters(input_text)
+print("Используемые строчные символы латиницы:", lower_case_latin_characters)
+#     print("Вы выбрали задачу 2.")
+# def task3():
+#     def find_min_number(s):
+    min_number = float('inf')
+    current_number = ''
+
+    for char in s:
+        if char.isdigit():
+            current_number += char
+        else:
+            if current_number:
+                number = int(current_number)
+                min_number = min(min_number, number)
+                current_number = ''
+
+    if current_number:
+        number = int(current_number)
+        min_number = min(min_number, number)
+
+    return min_number
+
+
+s = "abc 123 def 45 ghi -7"
+min_number = find_min_number(s)
+print(f"Минимальное число в строке: {min_number}")
+#     print("Вы выбрали задачу 3.")
+#
+# def main():
+#     while True:
+#         print("Выберите задачу:")
+#         print("1. Решить задачу 1")
+#         print("2. Решить задачу 2")
+#         print("3. Решить задачу 3")
+#         print("0. Выйти")
+#         choice = input("Введите номер задачи или 0 для выхода: ")
+#         if choice == '1':
+#             task1()
+#         elif choice == '2':
+#             task2()
+#         elif choice == '3':
+#             task3()
+#         elif choice == '0':
+#             print("До свидания!")
+#             break
+#         else:
+#             print("Некорректный ввод. Пожалуйста, выберите существующую задачу.")
+#
+# if __name__ == "__main__":
+#     main()
