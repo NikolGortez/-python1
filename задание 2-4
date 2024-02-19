@@ -1,0 +1,55 @@
+def task1():
+    import random
+    def shuffle_words(sentence):
+        words = sentence.split()
+        random.shuffle(words)
+        shuffled_sentence = ' '.join(words)
+        return shuffled_sentence
+    input_sentence = input("Введите строку с пробелами между словами: ")
+    shuffled_sentence = shuffle_words(input_sentence)
+    print("Перемешанная строка:", shuffled_sentence)
+    print("Вы выбрали задачу 1.")
+def task2():
+    def count_words_with_even_length(sentence):
+        words = sentence.split()
+        count = 0
+        for word in words:
+            if len(word) % 2 == 0:
+                count += 1
+        return count
+    input_sentence = input("Введите строку с пробелами между словами: ")
+    count = count_words_with_even_length(input_sentence)
+    print("Количество слов с чётным количеством символов:", count)
+    print("Вы выбрали задачу 2.")
+def task3():
+    def sort_russian_flag(arr):
+        colors = {"белый": 0, "синий": 1, "красный": 2}
+        arr.sort(key=lambda x: colors[x])
+        return arr
+    flag = ["белый", "синий", "красный"]
+    sorted_flag = sort_russian_flag(flag)
+    print("Упорядоченный массив для российского флага:", sorted_flag)
+    print("Вы выбрали задачу 3.")
+
+def main():
+    while True:
+        print("Выберите задачу:")
+        print("1. Решить задачу 1")
+        print("2. Решить задачу 2")
+        print("3. Решить задачу 3")
+        print("0. Выйти")
+        choice = input("Введите номер задачи или 0 для выхода: ")
+        if choice == '1':
+            task1()
+        elif choice == '2':
+            task2()
+        elif choice == '3':
+            task3()
+        elif choice == '0':
+            print("До свидания!")
+            break
+        else:
+            print("Некорректный ввод. Пожалуйста, выберите существующую задачу.")
+
+if __name__ == "__main__":
+    main()
